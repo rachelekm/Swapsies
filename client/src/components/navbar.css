@@ -1,0 +1,12 @@
+.NavBar {
+	width: 100%;
+	background: grey;
+	padding: 10px;
+	margin: 0;
+}
+
+.NavButton {
+	width: 24%;
+	text-align: center;
+	display: inline-block;
+}

@@ -1,0 +1,16 @@
+.swapMoreInfo {
+	background: #D3D3D3;
+	padding: 20px;
+	max-height: 250px;
+}
+
+h2 {
+	margin: 0;
+	margin-bottom: 10px;
+}
+
+#swapButton {
+	margin-top: 10px;
+	width: 100%;
+	padding: 10px;
+}
