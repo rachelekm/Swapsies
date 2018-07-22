@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import { Link } from 'react-router-dom'
 import './navbar.css';
 
 export function NavBar(props) {
@@ -7,16 +8,16 @@ export function NavBar(props) {
         <nav>
             <ul className="NavBar">
                 <li className="homepageNavButton NavButton" aria-label="Go to homepage">
-                    <a href="/">Homepage</a>
+                    <Link to="/">Homepage</Link>
                 </li>
                 <li className="accountNavButton NavButton" aria-label="Go to Account Profile">
-                    <a href="/user-profile">Account</a>
+                    <Link to="/user-profile">Account</Link>
                 </li>
                 <li className="addSwapNavButton NavButton" aria-label="Add a Swap Posting">
-                    <a href="/add-swap">Post a Swap</a>
+                    <Link to="/add-swap">Post a Swap</Link>
                 </li>
                 <li className="matchesNavButton NavButton" aria-label="Go to Matches Page">
-                    <a href="/">See Swap Matches</a>
+                    <Link to="/">See Swap Matches</Link>
                 </li>
             </ul>
         </nav>

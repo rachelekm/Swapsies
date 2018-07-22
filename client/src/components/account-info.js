@@ -1,23 +1,23 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-export function AccountInfo(props) {
-  console.log(props);
+export class AccountInfo extends React.Component {
+  render() {
     return (
     	<div className="accountInfo">
         <h2>Name:</h2>
         <h3 id="accountInfoName">
-            {props.user.userFirstName} {props.user.userLastName}
+            {this.props.user.userFirstName} {this.props.user.userLastName}
         </h3>
         <h2>Restaurant Affiliation:</h2>
         <h3 id="accountInfoRestaurant">
-            Name: {props.user.restaurant.affiliationName}
+            Name: {this.props.user.restaurant.affiliationName}
         </h3>
         <h3 id="accountInfoRestaurant">
-            Address: {props.user.restaurant.address}
+            Address: {this.props.user.restaurant.address}
         </h3>
         <h3 id="accountInfoRestaurant">
-            Contact Info: {props.user.restaurant.contact}
+            Contact Info: {this.props.user.restaurant.contact}
         </h3>
         <button 
           	type="button"
@@ -26,12 +26,13 @@ export function AccountInfo(props) {
         >
           	Edit Account Profile
         </button>
-        </div>
+      </div>
     );
+  }
 }
 
 const mapStateToProps = state => ({
-    user: state.user
+    user: state.app.user
 });
 
 
