@@ -7,12 +7,13 @@ import './swap-details.css';
 export class SwapInfo extends React.Component {
 
 	render() {
-			console.log(this.props);
-		const categoryTags = this.props.tags.map((tag, index) =>
-            <li key={index}>
-                <SwapTags {...tag} />
-            </li>
-        );
+		console.log(this.props.tags);
+    	const categoryTags = this.props.tags.map((tag, index) =>
+        	<div className="swapTagBlock" key={index}>
+            	<SwapTags {...tag} />
+        	</div>
+    	);
+
 		console.log(this.props);
     	return (
     		<div className="swapMoreInfo">

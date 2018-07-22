@@ -1,8 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import {reduxForm, Field} from 'redux-form';
+import {reduxForm, Field, SubmissionError, focus} from 'redux-form';
+import Input from './input';
+import InputSelect from './select'
+import {required, nonEmpty, email} from '../validators';
 import { RestaurantCategories } from './categories'
-import { addSwapPosting } from '../actions';
 
 
 export class NewSwapForm extends React.Component {
@@ -11,9 +12,25 @@ export class NewSwapForm extends React.Component {
   }
 
   render() {
-    const categories = RestaurantCategories.map((type) => (
-        <option value={type}>{type}</option>
-      ));
+    let successMessage;
+      if (this.props.submitSucceeded) {
+        successMessage = (
+          <div className="message message-success">
+            Message submitted successfully
+          </div>
+        );
+      }
+
+    let errorMessage;
+      if (this.props.error) {
+        errorMessage = (
+          <div className="message message-error">{this.props.error}</div>
+      );
+    }
+
+    const categories = RestaurantCategories.map(c => {
+                      return { value: c, label: c }
+                    });
 
     return (
       <div id="newSwapSection">
@@ -22,32 +39,65 @@ export class NewSwapForm extends React.Component {
               onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values)
                 )}>
-              <label for="meal-summary">Meal Summary</label>
-              <Field name="meal-summary" 
-                id="meal-summary" 
-                type="text" 
-                component="textarea" />
-              <label for="meal-tags">Select categories from below:</label>
-              <Field name="swapTagsInput" id="swapTagsInput" type="text" component="select" />
-              <Field
-                onClick={
-                  () => {
-                    this.setState((prevState) => {
-                    return {isChecked: !prevState.isChecked};
-                    });
-                  }
-                }
-                name="meal-type"
-                component="input"
-                type="radio"
-                checked={this.state.isChecked}
-                value="Vegetarian"
+              {successMessage}
+              {errorMessage}
+
+              <Field 
+                name="meal-summary" 
+                label="Meal Summary" 
+                type="textarea" 
+                component={Input}
+                validate={[required, nonEmpty]}/>
+              <div className="newSwapRadioButtons">
+                <Field
+                  name="meal-type"
+                  label="Vegetarian"
+                  component={Input}
+                  type="radio"
+                  value="Vegetarian"
                 />
-                Vegetarian
-                <button type="submit"
-                  className="swapSubmitbutton">
-                  Publish Your Swap
-                  </button>
+                <Field
+                  name="meal-type"
+                  label="Vegan"
+                  component={Input}
+                  type="radio"
+                  value="Vegan"
+                />
+                <Field
+                  name="meal-type"
+                  label="Contains Nuts"
+                  component={Input}
+                  type="radio"
+                  value="Contains Nuts"
+                />
+                <Field
+                  name="meal-type"
+                  label="Gluten Free"
+                  component={Input}
+                  type="radio"
+                  value="Gluten Free"
+                />
+              </div>
+              <div className="newSwapSelectSection">
+              Select where applicable:
+                <Field
+                  className = "form-select"
+                  name="meal-categories"
+                  options={
+                    categories
+                  }
+                  component={InputSelect}
+                  multi          
+                  />
+              </div>
+
+
+                <button
+                    type="submit"
+                    className="swapSubmitbutton"
+                    disabled={this.props.pristine || this.props.submitting}>
+                    Publish Your Swap
+                </button>
             </form>
 
           </div>
@@ -55,5 +105,10 @@ export class NewSwapForm extends React.Component {
 
       }
 }
-export default reduxForm({form: 'swapform'})(NewSwapForm);
+
+export default reduxForm({
+    form: 'newSwap',
+    onSubmitFail: (errors, dispatch) =>
+        dispatch(focus('newSwap', Object.keys(errors)[0]))
+})(NewSwapForm);
 

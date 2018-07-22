@@ -1,5 +1,5 @@
 export const RestaurantCategories =
-['American', 
+['American',
 'Burgers', 
 'Chinese', 
 'Indian', 
