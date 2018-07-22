@@ -10,7 +10,7 @@ export function NavBar(props) {
                     <a href="/">Homepage</a>
                 </li>
                 <li className="accountNavButton NavButton" aria-label="Go to Account Profile">
-                    <a href="/">Account</a>
+                    <a href="/user-profile">Account</a>
                 </li>
                 <li className="addSwapNavButton NavButton" aria-label="Add a Swap Posting">
                     <a href="/add-swap">Post a Swap</a>

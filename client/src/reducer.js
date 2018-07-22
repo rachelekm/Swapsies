@@ -1,8 +1,13 @@
 import {ADD_SWAP, FILTER_SEARCH} from './actions';
 
 const initialState = {
-    availableSwaps: [{swapTitle: 'Restaurant 1', description: '2 bowls of Rice and beans and chips', tags: ['mexican', 'vegan']}, {swapTitle: 'Restaurant 2', description: '2 chicken pot pies: has potatoes, carrots, and leeks', tags: ['american', 'fast food']}],
-    userSwaps: [],
+    availableSwaps: [
+    {swapTitle: 'Restaurant 1', description: '2 bowls of Rice and beans and chips', tags: ['mexican', 'vegan'], interested: true, interestReturned: false}, 
+    {swapTitle: 'Restaurant 2', description: '2 chicken pot pies: has potatoes, carrots, and leeks', tags: ['american', 'fast food'], interested: false, interestReturned: false},
+    {swapTitle: 'Restaurant 3', description: '7,000 burritos', tags: ['mexican', 'fast food'], interested: true, interestReturned: true}
+    ],
+    userSwaps: {swapTitle: 'My Restaurant', description: '18 hard boiled eggs', tags: ['american', 'Gluten Free']}, 
+    user: {username: 'username', userFirstName: 'Bob', userLastName: 'Belcher', userID: 123456, restaurant: {affiliationName: 'Bobs Burgers', contact: '555-555-5555 ', address: '123 Main St, San Fran, CA 12345'}},
     matches: [],
     search: []
 };

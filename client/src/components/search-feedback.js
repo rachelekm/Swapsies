@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 export function SearchFeedback(props) {
+  console.log(props);
     const isPlural = props.swapsCount !== 1;
     const grammarCheck1 = isPlural ? 'are' : 'is';
     const grammarCheck2 = isPlural ? 'swaps' : 'swap';
@@ -16,7 +17,7 @@ export function SearchFeedback(props) {
 }
 
 const mapStateToProps = state => ({
-    swapsCount: state.availableSwaps.length
+    swapsCount: state.app.availableSwaps.length
 });
 
 
