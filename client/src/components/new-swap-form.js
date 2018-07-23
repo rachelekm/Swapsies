@@ -1,8 +1,8 @@
 import React from 'react';
-import {reduxForm, Field, SubmissionError, focus} from 'redux-form';
+import {reduxForm, Field, focus} from 'redux-form';
 import Input from './input';
 import InputSelect from './select'
-import {required, nonEmpty, email} from '../validators';
+import { required, nonEmpty } from '../validators';
 import { RestaurantCategories } from './categories'
 
 

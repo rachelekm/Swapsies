@@ -1,13 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import SwapInfo from './swap-info.js';
+import AccountSwapInfo from './profile-swap-info.js';
 
-export function SwapHistory(props) {
 
+export class SwapHistory extends React.Component {
+  render() {
     return (
     	<div className="userSwapPostInfo">
         <h2>Current Swap:</h2>
-            <SwapInfo {...props.userSwaps}/>
+            <AccountSwapInfo {...this.props.userSwaps}/>
         <button 
           	type="button"
           	id="editSwapPostButton" 
@@ -17,11 +18,11 @@ export function SwapHistory(props) {
         </button>
         </div>
     );
+  }
 }
 
 const mapStateToProps = state => ({
-    userSwaps: state.userSwaps
+  userSwaps: state.app.userSwaps
 });
-
 
 export default connect(mapStateToProps)(SwapHistory);
