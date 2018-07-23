@@ -2,6 +2,13 @@ language: node_js
 node_js: node
 cache:
   directories:
-    - node_modules
+  - node_modules
 env:
-  - CI=true
+- CI=true
+deploy:
+  provider: heroku
+  api_key:
+    secure: VPwc7f6035gSOcKIvBCaF5aiu2Z6NIHOv9mLDmwi7L2bkay2WDSE4HbSpkFDmdHh/ioQkNj/F+OhTfCA4g0aI0yuDmZaSGeCugR9gbr74UOlFbW6BAcGVoZzum49TOUXDIyHsn1itoeVARPz4J1wkPXmzrvYoRX0fErPrNugiX67J1KN2GODtzgqjcEwIrfATC9wtdfcGAu4OZacOIPOzbhFhn4V7HqJKGNvCiXy7WyoKQvKHHK0v+jUAkV4u+0EJvFCXilo4q96m4cZSezZIhI7xITlqWZJ2y8hEDb+WxLDNavx61uQLbf49gbk4nWLLY9QPwLY7H7fJH+wP0R3SRa3YCn/0djCYB9JKypwPi0lvO7V+I/MQjrAoCf9ScIQRwqbJAvDNXQWrbPkyFvW2+LlYwKQkxXHUcXk4jaFD4bgAb1xDOYSelP4CfDXryusFnsjR3UsQCtnkAkEc0atLO06BBBBqqlyFM548yj68PRJSY3SpFwhOPcNf8FokJ9yZLxXe7PAbX+qEM+aHYpaLZ/+r0rz82E4R8249ZHsx0dqnUCO6GqRhEniMnF7nOy48rKMRSXBS2D8hSBCcCynrYoTuY8SfI49bd6A0dkgnj0PwdFjdBSIxn3boqUxvYbhBa1bVnGxbRTt8UsH8FBfGdsnK+yeO1Ho7YFwIJad9Bc=
+  app: stormy-caverns-48800
+  on:
+    repo: rachelekm/Swapsies
