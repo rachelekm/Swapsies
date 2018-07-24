@@ -1,6 +1,7 @@
 export const ADD_SWAP = 'ADD_SWAP';
-export const addSwapPosting = () => ({
-    type: ADD_SWAP
+export const addSwapPosting = (values) => ({
+    type: ADD_SWAP,
+    values: values
 });
 
 export const EDIT_SWAP = 'EDIT_SWAP';
