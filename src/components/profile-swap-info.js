@@ -7,7 +7,7 @@ import './swap-details.css';
 export class AccountSwapInfo extends React.Component {
 
 	render() {
-		console.log(this.props.tags);
+		console.log(this.props);
     	const categoryTags = this.props.tags.map((tag, index) =>
         	<div className="swapTagBlock" key={index}>
             	<SwapTags {...tag} />

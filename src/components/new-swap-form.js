@@ -9,7 +9,6 @@ import { addSwapPosting } from '../actions';
 export class NewSwapForm extends React.Component {
 
   onSubmit(values) {
-    console.log(values);
     this.props.dispatch(addSwapPosting(values));
     this.resetFields('newSwap', {
       mealSummary: '',
@@ -99,6 +98,7 @@ export class NewSwapForm extends React.Component {
                   options={
                     categories
                   }
+                  validate={required}
                   component={InputSelect}
                   multi          
                   />

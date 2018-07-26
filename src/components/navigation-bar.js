@@ -17,7 +17,7 @@ export function NavBar(props) {
                     <Link to="/add-swap">Post a Swap</Link>
                 </li>
                 <li className="matchesNavButton NavButton" aria-label="Go to Matches Page">
-                    <Link to="/">See Swap Matches</Link>
+                    <Link to="/matches">See Swap Matches</Link>
                 </li>
             </ul>
         </nav>

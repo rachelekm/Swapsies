@@ -4,6 +4,24 @@ export const addSwapPosting = (values) => ({
     values: values
 });
 
+export const TOGGLE = 'TOGGLE';
+export const toggleComponent = index => ({
+    type: TOGGLE,
+    location: index
+});
+
+export const UPDATE_INTEREST = 'UPDATE_INTEREST';
+export const updateSwapInterest = index => ({
+    type: UPDATE_INTEREST,
+    location: index
+});
+
+export const REMOVE_INTEREST = 'REMOVE_INTEREST';
+export const noLongerInterested = index => ({
+    type: REMOVE_INTEREST,
+    location: index
+});
+
 export const EDIT_SWAP = 'EDIT_SWAP';
 export const editSwapPosting = () => ({
     type: EDIT_SWAP
@@ -14,11 +32,6 @@ export const deleteSwapPosting = () => ({
     type: DELETE_SWAP
 });
 
-export const UPDATE_INTEREST = 'UPDATE_INTEREST';
-export const updateSwapInterest = interest => ({
-    type: UPDATE_INTEREST,
-    interest
-});
 
 export const FILTER_SEARCH = 'FILTER_SEARCH';
 export const filterSearch = search => ({
