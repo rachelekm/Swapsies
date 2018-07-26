@@ -22,6 +22,8 @@ export const noLongerInterested = index => ({
     location: index
 });
 
+
+
 export const EDIT_SWAP = 'EDIT_SWAP';
 export const editSwapPosting = () => ({
     type: EDIT_SWAP
@@ -36,5 +38,5 @@ export const deleteSwapPosting = () => ({
 export const FILTER_SEARCH = 'FILTER_SEARCH';
 export const filterSearch = search => ({
     type: FILTER_SEARCH,
-    search
+    query: search
 });

@@ -11,7 +11,7 @@ const initialState = {
     userSwaps: [], 
     user: {username: 'username', userFirstName: 'Bob', userLastName: 'Belcher', userID: 123456, restaurant: {affiliationName: 'Bobs Burgers', contact: '555-555-5555 ', address: '123 Main St, San Fran, CA 12345'}},
     matches: [],
-    search: [],
+    filter: [],
     toggleStatus: {status: false, location: null}
 };
 
@@ -66,10 +66,15 @@ export default (state = initialState, action) => {
 
     if (action.type === actions.FILTER_SEARCH) {
         let query;
-        query = action.search;
+        console.log(action.query);
+        query = action.query.textSearch.split(', ');
+        if(action.query.mealType){
+            query.push(action.query.mealType);
+        }
         console.log(query);
+
         return Object.assign({}, state, {
-            search: [...state.search, query]
+            filter: [...state.filter, query]
         });
     }
 

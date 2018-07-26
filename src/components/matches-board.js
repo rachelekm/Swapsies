@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Header from './header';
+import SearchFilter from './search-filter';
 import SwapInfo from './swap-info';
 import SwapInfoInterested from './swap-info-interested';
 import SwapInfoMatch from './swap-info-match';
@@ -57,6 +58,7 @@ export class MatchesBoard extends React.Component {
       <div>
         <Header />
         <main role="main">
+        <SearchFilter />
         <ul id="swapsBoard">
           {matches}
         </ul>

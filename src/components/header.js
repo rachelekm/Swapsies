@@ -5,7 +5,6 @@ export default function Header(props) {
   return (
     <header>
       <NavBar />
-      <h1>Swapsies App</h1>
     </header>
   );
 }
