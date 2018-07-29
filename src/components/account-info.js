@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 export class AccountInfo extends React.Component {
+
   render() {
     return (
     	<div className="accountInfo">
@@ -11,18 +12,19 @@ export class AccountInfo extends React.Component {
         </h3>
         <h2>Restaurant Affiliation:</h2>
         <h3 id="accountInfoRestaurant">
-            Name: {this.props.user.restaurant.affiliationName}
+            Name: {this.props.user.affiliationName}
         </h3>
         <h3 id="accountInfoRestaurant">
-            Address: {this.props.user.restaurant.address}
+            Address: {this.props.user.affiliationAddress}
         </h3>
         <h3 id="accountInfoRestaurant">
-            Contact Info: {this.props.user.restaurant.contact}
+            Contact Info: {this.props.user.affiliationContact}
         </h3>
         <button 
           	type="button"
           	id="editAccountInfoButton" 
           	className="button"
+            onClick={() => this.props.clickResponse('accountInfo')}
         >
           	Edit Account Profile
         </button>

@@ -9,10 +9,11 @@ const initialState = {
 
     ],
     userSwaps: [], 
-    user: {username: 'username', userFirstName: 'Bob', userLastName: 'Belcher', userID: 123456, restaurant: {affiliationName: 'Bobs Burgers', contact: '555-555-5555 ', address: '123 Main St, San Fran, CA 12345'}},
+    user: {username: 'username', userFirstName: 'Bob', userLastName: 'Belcher', userID: 123456, affiliationName: 'Bobs Burgers', affiliationContact: '555-555-5555 ', affiliationAddress: '123 Main St, San Fran, CA 12345'},
     matches: [],
     filter: [],
-    toggleStatus: {status: false, location: null}
+    toggleStatus: {status: false, location: null},
+    editStatus: [{status: false, location: 'accountInfo'}]
 };
 
 export default (state = initialState, action) => {
@@ -77,6 +78,34 @@ export default (state = initialState, action) => {
             filter: [...state.filter, query]
         });
     }
+
+    if (action.type === actions.EDIT_INFO) {
+        return Object.assign({}, state, {
+            editStatus: state.editStatus.map((object) => {
+                let updatedStatus = !object.status
+                if (object.location === action.location) {
+                    return {...object, status: updatedStatus}
+                }
+                else {return object}
+            })
+        }); 
+    }
+
+    if (action.type === actions.UPDATE_PROFILE) {
+        return Object.assign({}, state, {
+            user: {...action.updates}
+        });
+    }
+    /*
+            let newProfileInfo = {};
+        Object.keys(state.user).forEach(object =>(
+            Object.keys(action.updates).forEach(action_object =>(
+                if ({action_object} === {object}){
+                    return action.updates.action_object
+                }
+            ));
+        ));
+    */
 
     return state;
 };

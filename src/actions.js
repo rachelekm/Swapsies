@@ -22,11 +22,17 @@ export const noLongerInterested = index => ({
     location: index
 });
 
+export const UPDATE_PROFILE = 'UPDATE_PROFILE';
+export const updateUserInfo = (values) => ({
+    type: UPDATE_PROFILE,
+    updates: values
+});
 
 
-export const EDIT_SWAP = 'EDIT_SWAP';
-export const editSwapPosting = () => ({
-    type: EDIT_SWAP
+export const EDIT_INFO = 'EDIT_INFO';
+export const editUserInfo = (location) => ({
+    type: EDIT_INFO,
+    location: location
 });
 
 export const DELETE_SWAP = 'DELETE_SWAP';
