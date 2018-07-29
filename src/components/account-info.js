@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import { toggleEditInfo } from '../actions';
 
 export class AccountInfo extends React.Component {
 
@@ -24,7 +25,7 @@ export class AccountInfo extends React.Component {
           	type="button"
           	id="editAccountInfoButton" 
           	className="button"
-            onClick={() => this.props.clickResponse('accountInfo')}
+            onClick={() => this.props.dispatch(toggleEditInfo('accountInfo'))}
         >
           	Edit Account Profile
         </button>

@@ -4,6 +4,13 @@ export const addSwapPosting = (values) => ({
     values: values
 });
 
+export const EDIT_SWAP = 'EDIT_SWAP';
+export const updateSwap = (values, index) => ({
+    type: EDIT_SWAP,
+    values: values,
+    location: index
+});
+
 export const TOGGLE = 'TOGGLE';
 export const toggleComponent = index => ({
     type: TOGGLE,
@@ -30,14 +37,16 @@ export const updateUserInfo = (values) => ({
 
 
 export const EDIT_INFO = 'EDIT_INFO';
-export const editUserInfo = (location) => ({
+export const toggleEditInfo = (location, index) => ({
     type: EDIT_INFO,
-    location: location
+    location: location,
+    index: index
 });
 
 export const DELETE_SWAP = 'DELETE_SWAP';
-export const deleteSwapPosting = () => ({
-    type: DELETE_SWAP
+export const deleteSwapPost = (index) => ({
+    type: DELETE_SWAP,
+    index: index.index
 });
 
 

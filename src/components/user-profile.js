@@ -2,42 +2,52 @@ import React from 'react';
 import Header from './header';
 import AccountInfo from './account-info';
 import SwapHistory from './user-swap-history';
-import AcocuntInfoEdit from './account-info-edit';
+import AccountInfoEdit from './account-info-edit';
+import SwapHistoryEdit from './user-swap-history-edit';
 import {connect} from 'react-redux';
-import { editUserInfo } from '../actions';
 
 export class UserProfile extends React.Component {
-  editSection(location){
-  	console.log('here');
-    this.props.dispatch(editUserInfo(location));
-  }
 
   render() {
-  	console.log(this.props.editStatus);
-  	let accountSection;
-  	let editingUpdates;
-  	this.props.editStatus.forEach((object, index) => (
-  		(object.location === 'accountInfo') &&
-  			(editingUpdates = object)
-  	));
+    console.log(this.props.editStatus);
+    let accountSection;
+    let swapSection;
+    let editingUpdates_account;
+    let editingUpdates_swaps;
+    this.props.editStatus.forEach((object, index) => (
+      (object.location === 'accountInfo') ?
+        (editingUpdates_account = object)
+        :
+        (editingUpdates_swaps = object)
+    ));
 
-  	console.log(editingUpdates);
-  	(editingUpdates.status == true) ?
-  	accountSection = (<AcocuntInfoEdit />)
-  	:
-  	accountSection = (<AccountInfo clickResponse={location => this.editSection(location)}/>)
+    (editingUpdates_account.status == true) ?
+      (accountSection = (<AccountInfoEdit />),
+      (editingUpdates_swaps.status == true) ?
+        swapSection = (<SwapHistoryEdit index={editingUpdates_swaps.index}/>)
+        :
+        swapSection = (<SwapHistory />)
+    )
+    :
+      (accountSection = (<AccountInfo />),
+      (editingUpdates_swaps.status == true) ?
+        swapSection = (<SwapHistoryEdit index={editingUpdates_swaps.index}/>)
+        :
+        swapSection = (<SwapHistory />)
+    )
 
+console.log(this.props.editStatus);
 
-  	return (
-    	<div>
-      	<Header />
-      	<main role="main">
-      	{accountSection}
-      	<SwapHistory />
-      	</main>
-    	</div>
-  	);
-	}
+    return (
+      <div>
+        <Header />
+        <main role="main">
+        {accountSection}
+        {swapSection}
+        </main>
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = state => ({

@@ -8,12 +8,12 @@ const initialState = {
     {swapTitle: 'Restaurant 4', description: '7,000 burritos', tags: [{type: 'mexican'}, {type: 'fast food'}], interested: true, interestReturned: true}
 
     ],
-    userSwaps: [], 
+    userSwaps: [{description: '2 bowls of Rice and beans and chips', tags: [{type: 'mexican'}, {type: 'vegan'}]}], 
     user: {username: 'username', userFirstName: 'Bob', userLastName: 'Belcher', userID: 123456, affiliationName: 'Bobs Burgers', affiliationContact: '555-555-5555 ', affiliationAddress: '123 Main St, San Fran, CA 12345'},
     matches: [],
     filter: [],
     toggleStatus: {status: false, location: null},
-    editStatus: [{status: false, location: 'accountInfo'}]
+    editStatus: [{status: false, location: 'accountInfo'}, {status: false, location: 'swapHistory', index: null}]
 };
 
 export default (state = initialState, action) => {
@@ -24,13 +24,45 @@ export default (state = initialState, action) => {
         if(action.values.mealType){
             tagsArray.push({type: action.values.mealType});
         }
+        /*add to available swaps for api */
         return Object.assign({}, state, {
     		userSwaps: [...state.userSwaps, {
-                swapTitle: state.user.restaurant.affiliationName,
+                swapTitle: state.user.affiliationName,
                 description: action.values.mealSummary,
                 tags: tagsArray,
                 interestReturned: []
             }]
+        });
+    }
+
+    if (action.type === actions.EDIT_SWAP) {
+        console.log('in reducer');
+        console.log(action);
+        const tagsArray = action.values.mealCategories.map(cat => (
+            {type: cat.value}
+        ));
+        return Object.assign({}, state, {
+            userSwaps: state.userSwaps.map((swap, index) => {
+                if (index === action.location) {
+                    return {
+                        description: action.values.mealSummary,
+                        tags: tagsArray
+                        }
+                }
+                else {return swap}
+            })
+        });
+    }
+
+    if (action.type === actions.DELETE_SWAP) {
+        return Object.assign({}, state, {
+            userSwaps: state.userSwaps.filter(swap => {
+                if (state.userSwaps.indexOf(swap) === action.index) {
+                    console.log('in here');
+                    return false;
+                }
+                else {return true}
+            })
         });
     }
 
@@ -80,11 +112,17 @@ export default (state = initialState, action) => {
     }
 
     if (action.type === actions.EDIT_INFO) {
+        console.log(action);
         return Object.assign({}, state, {
             editStatus: state.editStatus.map((object) => {
                 let updatedStatus = !object.status
                 if (object.location === action.location) {
-                    return {...object, status: updatedStatus}
+                    if(!action.index){
+                        return {...object, status: updatedStatus}
+                    }
+                    else {
+                        return {...object, status: updatedStatus, index: action.index.index}
+                    }
                 }
                 else {return object}
             })
@@ -96,16 +134,6 @@ export default (state = initialState, action) => {
             user: {...action.updates}
         });
     }
-    /*
-            let newProfileInfo = {};
-        Object.keys(state.user).forEach(object =>(
-            Object.keys(action.updates).forEach(action_object =>(
-                if ({action_object} === {object}){
-                    return action.updates.action_object
-                }
-            ));
-        ));
-    */
 
     return state;
 };

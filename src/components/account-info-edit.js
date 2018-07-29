@@ -3,13 +3,13 @@ import {connect} from 'react-redux';
 import {reduxForm, Field, change, untouch } from 'redux-form';
 import Input from './input';
 import { required, nonEmpty } from '../validators';
-import { updateUserInfo, editUserInfo } from '../actions';
+import { updateUserInfo, toggleEditInfo } from '../actions';
 
-export class AcocuntInfoEdit extends React.Component {
+export class AccountInfoEdit extends React.Component {
 
   onSubmit(values) {
     this.props.dispatch(updateUserInfo(values));
-    this.props.dispatch(editUserInfo('accountInfo'));
+    this.props.dispatch(toggleEditInfo('accountInfo'));
   }
 
   resetFields(formName, fieldsObj) {
@@ -94,5 +94,5 @@ export default connect( mapStateToProps )(
     reduxForm({
         form: 'editProfileInfo',
         enableReinitialize : true
-    })(AcocuntInfoEdit)
+    })(AccountInfoEdit)
  );

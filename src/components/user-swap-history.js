@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import AccountSwapInfo from './profile-swap-info.js';
 import { Link } from 'react-router-dom'
+import { toggleEditInfo, deleteSwapPost } from '../actions';
 
 export class SwapHistory extends React.Component {
   render() {
@@ -14,6 +15,7 @@ export class SwapHistory extends React.Component {
               type="button"
               id="editSwapPostButton" 
               className="button"
+              onClick={() => this.props.dispatch(toggleEditInfo('swapHistory', {index}))}
             >
             Edit Swap
             < /button>
@@ -21,6 +23,7 @@ export class SwapHistory extends React.Component {
               type="button"
               id="deleteSwapPostButton" 
               className="button"
+              onClick={() => this.props.dispatch(deleteSwapPost({index}))}
             >
             Delete Swap
             < /button>
