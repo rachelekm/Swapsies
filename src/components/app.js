@@ -5,7 +5,9 @@ import Homepage from './homepage';
 import AddSwap from './add-swap';
 import UserProfile from './user-profile';
 import MatchesBoard from './matches-board';
-import {refreshAuthToken} from '../actions/actions';
+import LandingPage from './landing-page';
+import AccountRegistration from './account-registration';
+import {refreshAuthToken} from '../actions/actions-auth';
 
 export class App extends React.Component {
     componentDidUpdate(prevProps) {
@@ -39,7 +41,9 @@ export class App extends React.Component {
     	return (
     		<Router>
       			<div className="app">
-        			<Route exact path="/" component={Homepage} />
+      			    <Route exact path="/" component={LandingPage} />
+      			    <Route exact path="/sign-up" component={AccountRegistration} />
+        			<Route exact path="/home" component={Homepage} />
         			<Route exact path="/add-swap" component={AddSwap} />
         			<Route exact path="/user-profile" component={UserProfile} />
         			<Route exact path="/matches" component={MatchesBoard} />

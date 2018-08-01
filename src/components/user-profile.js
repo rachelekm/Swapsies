@@ -4,6 +4,8 @@ import AccountInfo from './account-info';
 import SwapHistory from './user-swap-history';
 import AccountInfoEdit from './account-info-edit';
 import SwapHistoryEdit from './user-swap-history-edit';
+import LogOutSection from './log-out';
+import RequiresAuth from './requires-login';
 import {connect} from 'react-redux';
 
 export class UserProfile extends React.Component {
@@ -44,14 +46,20 @@ console.log(this.props.editStatus);
         <main role="main">
         {accountSection}
         {swapSection}
+        <LogOutSection />
         </main>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  editStatus: state.app.editStatus
-});
+const mapStateToProps = state => {
+  const {currentUser} = state.auth;
+  return {
+        username: state.auth.currentUser.username,
+        name: `${currentUser.firstName} ${currentUser.lastName}`,
+        editStatus: state.app.editStatus
+    };
+};
 
-export default connect(mapStateToProps)(UserProfile);
+export default RequiresAuth()(connect(mapStateToProps)(UserProfile));

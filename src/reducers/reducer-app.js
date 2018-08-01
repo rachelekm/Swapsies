@@ -1,9 +1,10 @@
 import * as actions from '../actions/actions';
+import {AUTH_REQUEST} from '../actions/actions-auth';
 
 const initialState = {
     availableSwaps: [
     {swapTitle: 'Restaurant 1', description: '2 bowls of Rice and beans and chips', tags: [{type: 'mexican'}, {type: 'vegan'}], interested: true, interestReturned: false}, 
-    {swapTitle: 'Restaurant 2', description: '2 chicken pot pies: has potatoes, carrots, and leeks',  , interested: false, interestReturned: false},
+    {swapTitle: 'Restaurant 2', description: '2 chicken pot pies: has potatoes, carrots, and leeks', tags: [{type: 'american'}, {type: 'fast food'}], interested: false, interestReturned: false},
     {swapTitle: 'Restaurant 3', description: '7,000 burritos', tags: [{type: 'mexican'}, {type: 'fast food'}], interested: true, interestReturned: true},
     {swapTitle: 'Restaurant 4', description: '7,000 burritos', tags: [{type: 'mexican'}, {type: 'fast food'}], interested: true, interestReturned: true}
 

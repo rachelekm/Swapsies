@@ -8,7 +8,7 @@ export function NavBar(props) {
         <nav>
             <ul className="NavBar">
                 <li className="homepageNavButton NavButton" aria-label="Go to homepage">
-                    <Link to="/">Homepage</Link>
+                    <Link to="/home">Homepage</Link>
                 </li>
                 <li className="accountNavButton NavButton" aria-label="Go to Account Profile">
                     <Link to="/user-profile">Account</Link>

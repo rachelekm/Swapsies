@@ -5,6 +5,7 @@ import SearchFilter from './search-filter';
 import SwapInfo from './swap-info';
 import SwapInfoInterested from './swap-info-interested';
 import SwapInfoMatch from './swap-info-match';
+import RequiresAuth from './requires-login';
 import { toggleComponent } from '../actions/actions';
 
 export class MatchesBoard extends React.Component {
@@ -68,9 +69,14 @@ export class MatchesBoard extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = state => {
+  const {currentUser} = state.auth;
+  return {
   availableSwaps: state.app.availableSwaps,
-  toggleStatus: state.app.toggleStatus
-});
+  toggleStatus: state.app.toggleStatus,
+  username: state.auth.currentUser.username,
+  name: `${currentUser.firstName} ${currentUser.lastName}`
+};
+};
 
-export default connect(mapStateToProps)(MatchesBoard);
+export default RequiresAuth()(connect(mapStateToProps)(MatchesBoard));
