@@ -1,9 +1,9 @@
-import * as actions from './actions';
+import * as actions from '../actions/actions';
 
 const initialState = {
     availableSwaps: [
     {swapTitle: 'Restaurant 1', description: '2 bowls of Rice and beans and chips', tags: [{type: 'mexican'}, {type: 'vegan'}], interested: true, interestReturned: false}, 
-    {swapTitle: 'Restaurant 2', description: '2 chicken pot pies: has potatoes, carrots, and leeks', tags: [{type: 'american'}, {type: 'fast food'}], interested: false, interestReturned: false},
+    {swapTitle: 'Restaurant 2', description: '2 chicken pot pies: has potatoes, carrots, and leeks',  , interested: false, interestReturned: false},
     {swapTitle: 'Restaurant 3', description: '7,000 burritos', tags: [{type: 'mexican'}, {type: 'fast food'}], interested: true, interestReturned: true},
     {swapTitle: 'Restaurant 4', description: '7,000 burritos', tags: [{type: 'mexican'}, {type: 'fast food'}], interested: true, interestReturned: true}
 
@@ -13,7 +13,9 @@ const initialState = {
     matches: [],
     filter: [],
     toggleStatus: {status: false, location: null},
-    editStatus: [{status: false, location: 'accountInfo'}, {status: false, location: 'swapHistory', index: null}]
+    editStatus: [{status: false, location: 'accountInfo'}, {status: false, location: 'swapHistory', index: null}],
+    loading: false,
+    error: null
 };
 
 export default (state = initialState, action) => {
@@ -133,6 +135,14 @@ export default (state = initialState, action) => {
         return Object.assign({}, state, {
             user: {...action.updates}
         });
+    }
+
+    if (action.type === AUTH_REQUEST) {
+        return Object.assign({}, state, {
+            loading: true,
+            error: null
+        });
+
     }
 
     return state;

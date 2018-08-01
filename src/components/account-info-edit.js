@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {reduxForm, Field, change, untouch } from 'redux-form';
 import Input from './input';
 import { required, nonEmpty } from '../validators';
-import { updateUserInfo, toggleEditInfo } from '../actions';
+import { updateUserInfo, toggleEditInfo } from '../actions/actions';
 
 export class AccountInfoEdit extends React.Component {
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import SwapTags from './swap-tags';
-import { updateSwapInterest } from '../actions';
+import { updateSwapInterest } from '../actions/actions';
 import './swap-details.css';
 
 export class SwapInfo extends React.Component {

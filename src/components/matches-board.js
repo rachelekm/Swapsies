@@ -5,7 +5,7 @@ import SearchFilter from './search-filter';
 import SwapInfo from './swap-info';
 import SwapInfoInterested from './swap-info-interested';
 import SwapInfoMatch from './swap-info-match';
-import { toggleComponent } from '../actions';
+import { toggleComponent } from '../actions/actions';
 
 export class MatchesBoard extends React.Component {
 

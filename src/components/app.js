@@ -1,19 +1,59 @@
 import React from 'react';
-import {BrowserRouter as Router, Route } from 'react-router-dom';
+import {connect} from 'react-redux';
+import {BrowserRouter as Router, Route, withRouter } from 'react-router-dom';
 import Homepage from './homepage';
 import AddSwap from './add-swap';
 import UserProfile from './user-profile';
 import MatchesBoard from './matches-board';
+import {refreshAuthToken} from '../actions/actions';
 
-export default function App(props) {
-  return (
-    <Router>
-      <div className="app">
-        <Route exact path="/" component={Homepage} />
-        <Route exact path="/add-swap" component={AddSwap} />
-        <Route exact path="/user-profile" component={UserProfile} />
-        <Route exact path="/matches" component={MatchesBoard} />
-      </div>
-    </Router>
-  );
+export class App extends React.Component {
+    componentDidUpdate(prevProps) {
+        if (!prevProps.loggedIn && this.props.loggedIn) {
+            this.startPeriodicRefresh();
+        } else if (prevProps.loggedIn && !this.props.loggedIn) {
+            this.stopPeriodicRefresh();
+        }
+    }
+
+    componentWillUnmount() {
+        this.stopPeriodicRefresh();
+    }
+
+    startPeriodicRefresh() {
+        this.refreshInterval = setInterval(
+            () => this.props.dispatch(refreshAuthToken()),
+            60 * 60 * 1000 // One hour
+        );
+    }
+
+    stopPeriodicRefresh() {
+        if (!this.refreshInterval) {
+            return;
+        }
+
+        clearInterval(this.refreshInterval);
+    }
+
+    render() {
+    	return (
+    		<Router>
+      			<div className="app">
+        			<Route exact path="/" component={Homepage} />
+        			<Route exact path="/add-swap" component={AddSwap} />
+        			<Route exact path="/user-profile" component={UserProfile} />
+        			<Route exact path="/matches" component={MatchesBoard} />
+      			</div>
+    		</Router>
+  		);
+
+    }
+  
 }
+
+const mapStateToProps = state => ({
+    hasAuthToken: state.auth.authToken !== null,
+    loggedIn: state.auth.currentUser !== null
+});
+
+export default withRouter(connect(mapStateToProps)(App));

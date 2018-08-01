@@ -4,7 +4,7 @@ import {reduxForm, Field, change, untouch } from 'redux-form';
 import Input from './input';
 import InputSelect from './select'
 import { required, nonEmpty } from '../validators';
-import { updateSwap, toggleEditInfo } from '../actions';
+import { updateSwap, toggleEditInfo } from '../actions/actions';
 import { RestaurantCategories } from './categories'
 
 

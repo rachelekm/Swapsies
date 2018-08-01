@@ -4,7 +4,7 @@ import Input from './input';
 import InputSelect from './select'
 import { required, nonEmpty } from '../validators';
 import { RestaurantCategories } from './categories'
-import { addSwapPosting } from '../actions';
+import { addSwapPosting } from '../actions/actions';
 
 export class NewSwapForm extends React.Component {
 

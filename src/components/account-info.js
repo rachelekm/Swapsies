@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { toggleEditInfo } from '../actions';
+import { toggleEditInfo } from '../actions/actions';
 
 export class AccountInfo extends React.Component {
 

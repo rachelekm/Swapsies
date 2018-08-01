@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import AccountSwapInfo from './profile-swap-info.js';
 import { Link } from 'react-router-dom'
-import { toggleEditInfo, deleteSwapPost } from '../actions';
+import { toggleEditInfo, deleteSwapPost } from '../actions/actions';
 
 export class SwapHistory extends React.Component {
   render() {

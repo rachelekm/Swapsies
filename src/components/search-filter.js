@@ -3,7 +3,7 @@ import {reduxForm, Field, change, untouch } from 'redux-form';
 import Input from './input';
 import { connect } from 'react-redux';
 import { required, nonEmpty } from '../validators';
-import { filterSearch } from '../actions';
+import { filterSearch } from '../actions/actions';
 
 export class SearchFilter extends React.Component {
 
